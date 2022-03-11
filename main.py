@@ -2,6 +2,7 @@ from pprint import pprint
 from typing import Optional, Dict, List, Set
 import first
 import follow
+import parse_table
 
 rules: Dict[str, List[Optional[str]]] = {
     "E": ["TX"],
@@ -17,3 +18,6 @@ print("Firsts:")
 pprint(firsts)
 print("Follows:")
 pprint(follows)
+parse_tables = parse_table.parse_table(rules, firsts, follows)
+print("Parsing table: ")
+pprint(parse_tables)
