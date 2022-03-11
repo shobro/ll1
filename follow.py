@@ -36,6 +36,8 @@ def find_follow(
                 ret |= find_follow(left_side, non_terminals, rules, firsts)
 
     assert None not in ret
+    if non_terminal == non_terminals[0]:
+        ret.add("$")
     return ret
 
 
@@ -44,7 +46,6 @@ def find_follows(
 ) -> Dict[str, Set[str]]:
     follow_set: Dict[str, Set[str]] = dict()
     non_terminals: List[str] = list(rules.keys())
-    follow_set[non_terminals[0]] = set(["$"])
 
     for non_terminal in non_terminals:
         if non_terminal in follow_set:
