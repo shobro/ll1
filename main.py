@@ -10,10 +10,6 @@ rules: Dict[str, List[Optional[str]]] = {
     "F": ["n", "i", "(E)"],
 }
 
-firsts: Dict[str, Set[Optional[str]]] = dict()
-
-
-for terminal in rules.keys():
-    firsts[terminal] = first.find_first(terminal, rules)
+firsts: Dict[str, Set[Optional[str]]] = first.find_firsts(rules)
 
 pprint(firsts)
