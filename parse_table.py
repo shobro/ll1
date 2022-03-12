@@ -1,15 +1,20 @@
 from pprint import pprint
+from typing import Dict, List, Set
 
 
-def parse_table(rules, first, follow):
-    parse_table = dict()
-    non_terminals = set()
-    start = "E"
+def parse_table(
+    rules: Dict[str, List],
+    first: Dict[str, Set],
+    follow: Dict[str, Set],
+):
+    parse_table: Dict[str, Dict[str, List]] = dict()
+    non_terminals: Set[str] = set()
+
     for nt in rules.keys():
         non_terminals.add(nt)
         parse_table[nt] = dict()
 
-    terminals = set()
+    terminals: Set[str] = set()
 
     for nt in rules.keys():
         for r in rules[nt]:
@@ -24,7 +29,6 @@ def parse_table(rules, first, follow):
         parse_table[nt] = dict()
         for t in terminals:
             parse_table[nt][t] = []
-    # pprint(parse_table)
 
     for nonterminal in rules.keys():
         for rule in rules[nonterminal]:
@@ -33,7 +37,7 @@ def parse_table(rules, first, follow):
                     parse_table[nonterminal][follow_terminals].append(rule)
                 continue
             for ch in rule:
-                flag = 0
+                flag: int = 0
                 if ch in terminals:
                     parse_table[nonterminal][ch].append(rule)
                     break
@@ -49,4 +53,5 @@ def parse_table(rules, first, follow):
                 if ch == rule[len(rule) - 1]:
                     for follow_set in follow[nonterminal]:
                         parse_table[nonterminal][follow_set].append(rule)
+
     return parse_table
