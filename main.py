@@ -4,6 +4,7 @@ import first
 import follow
 import parse_table
 import parsing
+
 rules: Dict[str, List[Optional[str]]] = {
     "E": ["TX"],
     "X": ["+TX", "-TX", None],
@@ -21,4 +22,4 @@ pprint(follows)
 parse_tables = parse_table.parse_table(rules, firsts, follows)
 print("Parsing table: ")
 pprint(parse_tables)
-parsing.parsing(rules,parse_tables)
+parsing.parsing(rules, parse_tables)
