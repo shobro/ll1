@@ -14,6 +14,12 @@ F --> num
 F --> id
 F --> (E)
 ```
+which can also be written as:
+```
+E --> E+T | E-T | T
+T --> T*F | T/F | F
+F --> num | id | (E)
+```
 
 However, the above the grammer is left recursive, so we first need to remove
 left recursions as follows: 
@@ -48,3 +54,4 @@ Parsing table:
   * subroutine for finding first set
   * subroutine for finding follow set
   * verifcation of parsing table
+  * code for removing left-recursion and left-factoring
