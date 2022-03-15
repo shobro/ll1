@@ -4,22 +4,23 @@ import first
 import follow
 import parse_table
 import parsing
+import get_rules
 
-rules: Dict[str, List[Optional[str]]] = {
-    "E": ["TX"],
-    "X": ["+TX", "-TX", None],
-    "T": ["FY"],
-    "Y": ["*FY", "/FY", None],
-    "F": ["n", "i", "(E)"],
-}
 
-firsts: Dict[str, Set[Optional[str]]] = first.find_firsts(rules)
-follows: Dict[str, Set[str]] = follow.find_follows(rules, firsts)
+grammer = get_rules.get_grammer("grammer.txt")
+print("Rules parsed as: ")
+pprint(grammer)
+
+firsts = first.find_firsts(grammer)
 print("Firsts:")
 pprint(firsts)
+
+follows = follow.find_follows(grammer, firsts)
 print("Follows:")
 pprint(follows)
-parse_tables = parse_table.parse_table(rules, firsts, follows)
+
+parse_tables = parse_table.parse_table(grammer, firsts, follows)
 print("Parsing table: ")
 pprint(parse_tables)
-parsing.parsing(rules, parse_tables)
+
+parsing.parsing(grammer, parse_tables)

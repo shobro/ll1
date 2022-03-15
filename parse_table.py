@@ -38,7 +38,6 @@ def parse_table(rules, first, follow):
                     parse_table[nonterminal][ch].append(rule)
                     break
                 else:
-                    print(type(first))
                     for first_set in first[ch]:
                         if first_set == None:
                             flag = 1
