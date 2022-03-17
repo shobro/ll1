@@ -1,5 +1,4 @@
 from pprint import pprint
-from typing import Optional, Dict, List, Set
 import first
 import follow
 import parse_table
@@ -8,7 +7,7 @@ import get_rules
 
 
 grammer = get_rules.get_grammer("grammer.txt")
-print("Rules parsed as: ")
+print("Grammer after removing left recursion: ")
 pprint(grammer)
 
 firsts = first.find_firsts(grammer)
